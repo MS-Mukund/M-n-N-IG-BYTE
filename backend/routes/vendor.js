@@ -33,7 +33,7 @@ router.put("/editvpr", function(req, res) {
     const filter = { email: email };
     const update = {
         ManagerName: req.body.ManagerName,
-        ShopName: req.body.ShopName,
+        OrgName: req.body.OrgName,
         email: req.body.email,
         ContactNo: req.body.ContactNo,
         wallet: req.body.wallet,
@@ -56,7 +56,7 @@ router.put("/editvpr", function(req, res) {
 router.post("/vregister", (req, res) => {
     const newVendor = new Vendor({
         ManagerName: req.body.ManagerName,
-        ShopName: req.body.ShopName,
+        OrgName: req.body.OrgName,
         email: req.body.email,
         ContactNo: req.body.ContactNo,
         password: req.body.password,
@@ -64,7 +64,7 @@ router.post("/vregister", (req, res) => {
         ClosingTime: req.body.ClosingTime
     });
     
-    if( newVendor.ManagerName === "" || newVendor.ShopName === "" || newVendor.email === "" || newVendor.ContactNo === "" || newVendor.OpeningTime === "" || newVendor.ClosingTime === "" )
+    if( newVendor.ManagerName === "" || newVendor.OrgName === "" || newVendor.email === "" || newVendor.ContactNo === "" || newVendor.OpeningTime === "" || newVendor.ClosingTime === "" )
     {
         res.status(401).send("Please fill all the fields");
     }

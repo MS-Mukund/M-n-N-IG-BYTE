@@ -65,7 +65,7 @@ router.delete("/delete/:email", function(req, res) {
 });
 
 // POST request 
-// Add a buyer to db
+// Add a buyer(philanthropist) to db
 router.post("/bregister", (req, res) => {
     const newBuyer = new Buyer({
         name: req.body.name,

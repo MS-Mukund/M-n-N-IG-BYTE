@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const BuyerSchema = new Schema({
 	name: {
 		type: String,
-		required: 'Your good name please?'
+		required: 'Your Name'
 	},
 	email: {
 		type: String,

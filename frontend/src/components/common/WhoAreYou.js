@@ -22,8 +22,8 @@ const WhoAreYou = () => {
         <FormControl style={{width:"25%", margin: "15vh"}} >
         <InputLabel style={{width: "50%"}} id="demo-simple-select-label">Select type of user</InputLabel>
         <Select labelId="demo-simple-select-label" id="demo-simple-select" value={UserType} onChange={HandleChange}>
-          <MenuItem value={1}>Buyer</MenuItem>
-          <MenuItem value={0}>Vendor</MenuItem>
+          <MenuItem value={1}>I am a Philanthropist</MenuItem>
+          <MenuItem value={0}>I am an NGO</MenuItem>
         </Select>
         </FormControl>
     </Grid>

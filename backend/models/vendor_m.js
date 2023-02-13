@@ -6,10 +6,10 @@ const VendorSchema = new Schema({
 		type: String,
 		required: true
 	},
-	ShopName: {
+	OrgName: {
 		type: String,
 		required: true,
-		unique: 'This Shop Name is already registered'
+		unique: 'This Organization has already been registered'
 	},
 	email: {
 		type: String,

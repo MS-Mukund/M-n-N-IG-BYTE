@@ -6,11 +6,13 @@ import LoginIcon from '@mui/icons-material/Login';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { red, orange } from '@mui/material/colors';
 import { Navigate, useNavigate } from 'react-router-dom';
-import cake from '../img/login_img.jpg';
+import service from '../img/service.png';
 
 const redTheme = createTheme({ palette: { primary: red } })
 const oTheme = createTheme({ palette: { primary: orange } })
 
+// Buyer is the Philanthropist
+// Vendor is the NGO
 
 const Login=()=> {
     
@@ -94,7 +96,7 @@ const Login=()=> {
   //      }
   //      else
   //      {
-  //        alert("If you are neither a buyer nor vendor....then who are you? Hecker?");
+  //        alert("If you are neither a philanthropist nor a NGO....then who are you? Hecker?");
   //      }
   //     })
   //     .catch ((err) => {
@@ -170,11 +172,11 @@ const Login=()=> {
                 <Button type='submit' variant="outlined" color="primary" onClick={onSubmit} style={btnstyle}>Sign In</Button>
                 {/* </ThemeProvider> */}
 
-                <Typography variant='caption' style={sign_up_s} align='center' fullwidth="true"> <br /> <b>New to Sliggy?  &ensp; </b>
+                <Typography variant='caption' style={sign_up_s} align='center' fullwidth="true"> <br /> <b>New to NGO Connect?  &ensp; </b>
                     <Link href="/whoareyou" onClick={HandleClick} > Sign up</Link>
                 </Typography>
                 <br />
-                <img src={cake} style={img_s} alt="login_img" width='60%' height='40%' />
+                <img src={service} style={img_s} alt="service" width='60%' height='40%' />
             </Paper>
         </Grid>        
     )

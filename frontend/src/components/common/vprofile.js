@@ -15,7 +15,7 @@ let ClosingTime = 0;
 const Vend_prof = (props) => {
   const navigate = useNavigate();
   const [ManagerName, setManagerName] = useState("");
-  const [ShopName, setShopName] = useState("");
+  const [OrgName, setOrgName] = useState("");
   const [email, setEmail] = useState("");
   const [ContactNo, setContactNo] = useState('');
 
@@ -34,7 +34,7 @@ const Vend_prof = (props) => {
 
             setID(response.data._id);
             setManagerName(response.data.ManagerName);
-            setShopName(response.data.ShopName);
+            setOrgName(response.data.OrgName);
             setEmail(response.data.email);
             setContactNo(response.data.ContactNo);
             setPassword(response.data.password);
@@ -54,8 +54,8 @@ const Vend_prof = (props) => {
     setManagerName(event.target.value);
   };
 
-  const onChangeShopName = (event) => {
-    setShopName(event.target.value);
+  const onChangeOrgName = (event) => {
+    setOrgName(event.target.value);
   };
 
   const onChangeEmail = (event) => {
@@ -93,7 +93,7 @@ const Vend_prof = (props) => {
 
   const resetInputs = () => {
     setManagerName("");
-    setShopName("");
+    setOrgName("");
     setEmail("");
     setContactNo(0);
     setPassword("");
@@ -117,14 +117,14 @@ const Vend_prof = (props) => {
     console.log( Number(OpeningTime) );
     console.log( Number(ClosingTime) );
     console.log(ManagerName);
-    console.log(ShopName);
+    console.log(OrgName);
     console.log(email);
     console.log(ContactNo);
     console.log(password);
 
     const newVendor = {
       ManagerName: ManagerName,
-      ShopName: ShopName,
+      OrgName: OrgName,
       email: email,
       ContactNo: ContactNo,
       password: password,
@@ -183,7 +183,7 @@ const Vend_prof = (props) => {
         </Grid>
         <form style={{'margin': '10px', padding: '10px'}} onSubmit={onSubmit}>
           <TextField style={textStyle} value={ManagerName} fullWidth label='Manager Name' placeholder="Who's the boss" onChange={onChangeMname} required />
-          <TextField style={textStyle} value={ShopName} disabled fullWidth label='Shop Name' placeholder="Shop ka naam kya h" onChange={onChangeShopName} required/>
+          <TextField style={textStyle} value={OrgName} disabled fullWidth label='Shop Name' placeholder="Shop ka naam kya h" onChange={onChangeOrgName} required/>
           <TextField style={textStyle} value={email} disabled fullWidth label='Email' placeholder="Enter your Email" onChange={onChangeEmail} required/>
           <TextField style={textStyle} value={ContactNo} fullWidth label='Contact' placeholder="Number bolo jaldi" onChange={onChangeContactNo} required/>
           <TextField style={textStyle} value={password} fullWidth label='Password' placeholder="Enter your Password" type="password" onChange={onChangePassword} required/>

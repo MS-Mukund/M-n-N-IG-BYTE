@@ -13,7 +13,7 @@ let ClosingTime = 0;
 const Vend_reg = (props) => {
   const navigate = useNavigate();
   const [ManagerName, setManagerName] = useState("");
-  const [ShopName, setShopName] = useState("");
+  const [OrgName, setOrgName] = useState("");
   const [email, setEmail] = useState("");
   const [ContactNo, setContactNo] = useState('');
 
@@ -28,8 +28,8 @@ const Vend_reg = (props) => {
     setManagerName(event.target.value);
   };
 
-  const onChangeShopName = (event) => {
-    setShopName(event.target.value);
+  const onChangeOrgName = (event) => {
+    setOrgName(event.target.value);
   };
 
   const onChangeEmail = (event) => {
@@ -71,7 +71,7 @@ const Vend_reg = (props) => {
 
   const resetInputs = () => {
     setManagerName("");
-    setShopName("");
+    setOrgName("");
     setEmail("");
     setContactNo(0);
     setPassword("");
@@ -101,14 +101,14 @@ const Vend_reg = (props) => {
     console.log( Number(OpeningTime) );
     console.log( Number(ClosingTime) );
     console.log(ManagerName);
-    console.log(ShopName);
+    console.log(OrgName);
     console.log(email);
     console.log(ContactNo);
     console.log(password);
 
     const newVendor = {
       ManagerName: ManagerName,
-      ShopName: ShopName,
+      OrgName: OrgName,
       email: email,
       ContactNo: ContactNo,
       password: password,
@@ -144,7 +144,7 @@ const Vend_reg = (props) => {
         </Grid>
         <form style={{'margin': '10px', padding: '10px'}} onSubmit={onSubmit}>
           <TextField style={textStyle} fullWidth label='Manager Name' placeholder="Who's the boss" onChange={onChangeMname} required />
-          <TextField style={textStyle} fullWidth label='Shop Name' placeholder="Shop ka naam kya h" onChange={onChangeShopName} required/>
+          <TextField style={textStyle} fullWidth label='Shop Name' placeholder="Shop ka naam kya h" onChange={onChangeOrgName} required/>
           <TextField style={textStyle} fullWidth label='Email' placeholder="Enter your Email" onChange={onChangeEmail} required/>
           <TextField style={textStyle} fullWidth label='Contact' placeholder="Number bolo jaldi" onChange={onChangeContactNo} required/>
           <TextField style={textStyle} fullWidth label='Password' placeholder="Enter your Password" type="password" onChange={onChangePassword} required/>
