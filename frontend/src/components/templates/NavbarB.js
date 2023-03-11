@@ -18,7 +18,7 @@ const NavbarB = () => {
             sx={{ cursor: "pointer" }}
             onClick={() => navigate("/")}
           >
-            Canteen Portal
+            Academia
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Button color="inherit" onClick={() => navigate("/buyer")}>

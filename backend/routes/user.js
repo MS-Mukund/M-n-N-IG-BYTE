@@ -1,33 +1,33 @@
 var express = require("express");
 var router = express.Router();
 
-// Load Buyer model
-const Buyer = require("../models/buyer_m");
-const Vendor = require("../models/vendor_m");
+// Load User model
+const User = require("../models/user_m");
+const Badmin = require("../models/badmin_m");
 
 // GET request 
-// Getting the buyer by his email
+// Getting the user by his email
 router.get("/bprofile/:email", function(req, res) {
     const { email } = req.params;
 
-    Buyer.findOne({ email }).then(buyers => {
-		// Check if buyers email exists
-		if (!buyers) {
+    User.findOne({ email }).then(users => {
+		// Check if users email exists
+		if (!users) {
 			res.status(404).json({
-				error: "Buyer does not exist",
+				error: "User does not exist",
 			});
         }
         else{
-            res.json(buyers);
+            res.json(users);
         }
 	})
     .catch(err => {
         console.log(err);
-        res.status(400).send(err);
+        res.status(412).send(err);
     });
 });
 
-// edit buyer details 
+// edit user details 
 router.put("/editbpr", function(req, res) {
     const email = req.body.email;
     const filter = { email: email };
@@ -42,8 +42,8 @@ router.put("/editbpr", function(req, res) {
         Wallet: req.body.Wallet,
     };
 
-    Buyer.findOneAndUpdate(filter, update, { new: true }).then( vendors => {
-        res.json(vendors);
+    User.findOneAndUpdate(filter, update, { new: true }).then( badmins => {
+        res.json(badmins);
     })
     .catch(err => {
         console.log(err);
@@ -55,8 +55,8 @@ router.put("/editbpr", function(req, res) {
 router.delete("/delete/:email", function(req, res) {
     const { email } = req.params;
 
-    Buyer.deleteOne({ email: email }).then(buyers => {
-        res.json(buyers);
+    User.deleteOne({ email: email }).then(users => {
+        res.json(users);
     })
     .catch(err => {
         console.log(err);
@@ -65,9 +65,9 @@ router.delete("/delete/:email", function(req, res) {
 });
 
 // POST request 
-// Add a buyer(philanthropist) to db
+// Add a user(user) to db
 router.post("/bregister", (req, res) => {
-    const newBuyer = new Buyer({
+    const newUser = new User({
         name: req.body.name,
         email: req.body.email,
         ContactNo: req.body.ContactNo,
@@ -78,23 +78,23 @@ router.post("/bregister", (req, res) => {
         Wallet: 0
     });
 
-    Vendor.findOne({ email: req.body.email }).then(vendors => {
-        if (vendors) {
+    Badmin.findOne({ email: req.body.email }).then(badmins => {
+        if (badmins) {
             res.status(400).send("Email already exists");
         }
     });    
 
-    newBuyer.save()
-        .then(buyers => {
-            res.status(200).json(buyers);
+    newUser.save()
+        .then(users => {
+            res.status(200).json(users);
         })
         .catch(err => {
             console.log(err);
-            res.status(400).send(err);
+            res.status(413).send(err);
         });
 });
 
-// update buyer wallet
+// update user wallet
 router.put("/updatewallet/:id", function(req, res) {
     const { id } = req.params;
     const filter = { _id: id };
@@ -102,8 +102,8 @@ router.put("/updatewallet/:id", function(req, res) {
         Wallet: req.body.Wallet
     };
 
-    Buyer.findOneAndUpdate(filter, update, { new: true }).then( buyers => {
-        res.json(buyers);
+    User.findOneAndUpdate(filter, update, { new: true }).then( users => {
+        res.json(users);
     })
     .catch(err => {
         console.log(err);
@@ -120,8 +120,8 @@ router.post("/fav/create", function(req, res) {
         $push: { Favorites: Fid }
     };
 
-    Buyer.findOneAndUpdate(filter, update, { new: true }).then( buyers => {
-        res.json(buyers);
+    User.findOneAndUpdate(filter, update, { new: true }).then( users => {
+        res.json(users);
     })
     .catch(err => {
         console.log(err);

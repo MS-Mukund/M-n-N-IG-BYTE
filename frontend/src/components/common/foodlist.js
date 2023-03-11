@@ -52,7 +52,7 @@ const FoodList = (props) => {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    navigate("/vendor/add_Item");
+    navigate("/badmin/add_Item");
   }
 
   return (
@@ -74,9 +74,9 @@ const FoodList = (props) => {
                 {items.map((food, ind2) => (
                   <TableRow key={ind2}>
                     <TableCell>{ind2}</TableCell>
-                    <TableCell><Link to={"/vendor/show"} onClick={() => {
+                    <TableCell><Link to={"/badmin/show"} onClick={() => {
                       localStorage.setItem("Item_ID", food._id);
-                      navigate("/vendor/show");
+                      navigate("/badmin/show");
                     }}>{food.name}</Link></TableCell>
                     <TableCell>{ String(food.FoodType) }</TableCell>
                     <TableCell>{food.Price}</TableCell>

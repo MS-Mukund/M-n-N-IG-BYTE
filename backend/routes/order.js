@@ -8,8 +8,8 @@ router.post("/create", (req, res) => {
     const newOrder = new Order({
         Fid: req.body.Fid,
         Bid: req.body.Bid,
-        VendorEmail: req.body.VendorEmail,
-        VendorName: req.body.VendorName,
+        BadminEmail: req.body.BadminEmail,
+        BadminName: req.body.BadminName,
 
         PlacedTime: req.body.PlacedTime,
         Fname: req.body.Fname,
@@ -44,11 +44,11 @@ router.get("/get/:Bid", (req, res) => {
         });
 });
 
-// get orders by vendorid
-router.get("/vget/:VendorEmail", (req, res) => {
-    const { VendorEmail } = req.params;
+// get orders by badminid
+router.get("/vget/:BadminEmail", (req, res) => {
+    const { BadminEmail } = req.params;
 
-    Order.find({ VendorEmail: VendorEmail })
+    Order.find({ BadminEmail: BadminEmail })
         .then(orders => {
             res.status(200).json(orders);
         })
@@ -64,7 +64,7 @@ router.put("/changestat", (req,res) => {
     const update = {
         Fid: req.body.Fid,
         Bid: req.body.Bid,
-        VendorEmail: req.body.VendorEmail,
+        BadminEmail: req.body.BadminEmail,
         PlacedTime: req.body.PlacedTime,
         Fname: req.body.Fname,
         Cost: parseInt(req.body.Cost),

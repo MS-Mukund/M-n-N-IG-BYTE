@@ -52,7 +52,7 @@ const MakeOrder = (props) => {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    navigate("/vendor/add_Item");
+    navigate("/badmin/add_Item");
   }
 
   return (

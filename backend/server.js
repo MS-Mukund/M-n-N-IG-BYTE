@@ -4,13 +4,13 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const PORT = 4000;
-const DB_NAME = "ngo"
+const DB_NAME = "academia";
 
 // routes
 var testAPIRouter = require("./routes/testAPI");
-var UserRouter = require("./routes/Users");
-var BuyerRouter = require("./routes/buyer");
-var VendorRouter = require("./routes/vendor");
+var EventRouter = require("./routes/Events");
+var UserRouter = require("./routes/user");
+var BadminRouter = require("./routes/badmin");
 var MiscRouter = require("./routes/misc");
 var FoodRouter = require("./routes/food");
 var OrderRouter = require("./routes/order");
@@ -32,10 +32,10 @@ connection.once('open', function() {
 
 // setup API endpoints
 app.use("/testAPI", testAPIRouter );
-app.use("/user", UserRouter );
+app.use("/event", EventRouter );
 app.use("/misc", MiscRouter);
-app.use("/buyer", BuyerRouter );
-app.use("/vendor", VendorRouter );
+app.use("/user", UserRouter );
+app.use("/badmin", BadminRouter );
 app.use("/food", FoodRouter );
 app.use("/order", OrderRouter );
 

@@ -17,8 +17,7 @@ const Buy_reg = (props) => {
   const [ContactNo, setContactNo] = useState(0);
   const [password, setPassword] = useState("");
   const [age, setAge] = useState(0);
-  // const [BatchName, setBatchName] = useState("");
-  // const [CPass, setCPass] = useState("");
+  const [CPass, setCPass] = useState("");
 
   const navigate = useNavigate();
 
@@ -103,10 +102,10 @@ const Buy_reg = (props) => {
             <VpnKeyIcon />
           </Avatar>
           <h1>Register</h1>
-          <Typography variant="caption" style={{font_size:28}}> Note: you will be registering as a NGO</Typography>
+          <Typography variant="caption" style={{font_size:28}}>Welcome!</Typography>
         </Grid>
         <form style={{'margin': '10px', padding: '10px'}} onSubmit={onSubmit}>
-          <TextField style={textStyle} onChange={onChangeUsername}  fullWidth label='Name' placeholder="Enter your organization Name" />
+          <TextField style={textStyle} onChange={onChangeUsername}  fullWidth label='Name' placeholder="Enter your username" />
           <TextField style={textStyle} onChange={onChangeEmail}     fullWidth label='Email' placeholder="Enter your Email" />
           <TextField style={textStyle} onChange={onChangeContactNo} fullWidth label='Contact' placeholder="Enter your Contact" />
           <TextField style={textStyle} onChange={onChangePassword}  fullWidth label='Password' placeholder="Enter your Password" type="password" />

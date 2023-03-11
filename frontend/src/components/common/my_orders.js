@@ -83,7 +83,7 @@ const My_orders = (props) => {
               <TableHead>
                 <TableRow>
                   <TableCell><b>S NO.</b></TableCell>
-                  <TableCell><b>VENDOR NAME</b></TableCell>
+                  <TableCell><b>ADMIN NAME</b></TableCell>
                   <TableCell><b>ITEM</b></TableCell>
                   <TableCell><b>COST</b></TableCell>
                   <TableCell><b>QUANTITY</b></TableCell>
@@ -96,7 +96,7 @@ const My_orders = (props) => {
                 {items.map((food, ind2) => (
                   <TableRow key={ind2}>
                     <TableCell>{ind2}</TableCell>
-                    <TableCell>{food.VendorName}</TableCell>
+                    <TableCell>{food.BadminName}</TableCell>
                     <TableCell>{ String(food.Fname) }</TableCell>
                     <TableCell>{food.Cost}</TableCell>
                     <TableCell>{food.Quantity}</TableCell>

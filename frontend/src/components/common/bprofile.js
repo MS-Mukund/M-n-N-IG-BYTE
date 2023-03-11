@@ -137,7 +137,7 @@ const Buy_prof = (props) => {
             <DeleteIcon onClick={onDelete} />
           </Avatar>
           <h1>Register</h1>
-          <Typography variant="caption" style={{font_size:28}}> Note: you will be registering as a philanthropist</Typography>
+          <Typography variant="caption" style={{font_size:32}}>Welcome!</Typography>
         </Grid>
         <form style={{'margin': '10px', padding: '10px'}} onSubmit={onSubmit}>
           <TextField style={textStyle} value={name} onChange={onChangeUsername} disabled fullWidth label='Name' placeholder="your good Name please" />

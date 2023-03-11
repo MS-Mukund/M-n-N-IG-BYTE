@@ -104,7 +104,7 @@ const Food_reg = (props) => {
 
     const newFood = {
       name: name,
-      VendorEmail: localStorage.getItem('Email'),
+      BadminEmail: localStorage.getItem('Email'),
       Price: price,
       rating: 0,
       FoodType: foodtype,
@@ -119,7 +119,7 @@ const Food_reg = (props) => {
         console.log(response.data);
 
         // goto login page
-        navigate("/vendor/Items");
+        navigate("/badmin/Items");
       })
       .catch ((err) => {
         alert(err);

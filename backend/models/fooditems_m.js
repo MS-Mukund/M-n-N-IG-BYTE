@@ -7,7 +7,7 @@ const FoodSchema = new Schema({
 		type: String,
 		required: true
 	},
-    VendorEmail: {			// foreign key
+    BadminEmail: {			// foreign key
         type: String,
         required: true
     },

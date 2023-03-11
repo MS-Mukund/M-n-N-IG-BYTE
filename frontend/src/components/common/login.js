@@ -6,13 +6,13 @@ import LoginIcon from '@mui/icons-material/Login';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { red, orange } from '@mui/material/colors';
 import { Navigate, useNavigate } from 'react-router-dom';
-import service from '../img/service.png';
+import logo from '../img/logo.png';
 
 const redTheme = createTheme({ palette: { primary: red } })
 const oTheme = createTheme({ palette: { primary: orange } })
 
-// Buyer is the Philanthropist
-// Vendor is the NGO
+// User is the User
+// Badmin is the Admin
 
 const Login=()=> {
     
@@ -78,25 +78,25 @@ const Login=()=> {
   //     .post("http://localhost:4000/misc/login", newLogin)
   //     .then((response) => {
   //      console.log("Login Successful");
-  //      localStorage.setItem("IsBuyer", response.data[0]);
+  //      localStorage.setItem("IsUser", response.data[0]);
   //      localStorage.setItem("Email", email);
       
   //      console.log("Hello\t" + localStorage.getItem("Email"));
-  //      console.log("IsBuyer\t" + localStorage.getItem("IsBuyer"));
+  //      console.log("IsUser\t" + localStorage.getItem("IsUser"));
 
   //      console.log(response.data);
        
   //      if( response.data[0] === 1)
   //      {
-  //         navigate('/buyer');
+  //         navigate('/user');
   //      }
   //      else if( response.data[0] === 0)
   //      {
-  //         navigate('/vendor');
+  //         navigate('/badmin');
   //      }
   //      else
   //      {
-  //        alert("If you are neither a philanthropist nor a NGO....then who are you? Hecker?");
+  //        alert("Invalid option selected");
   //      }
   //     })
   //     .catch ((err) => {
@@ -113,9 +113,9 @@ const Login=()=> {
         password: password
     };
 
-    let buyer = true;
-    let vendor_buyer = true; 
-    console.log(buyer );
+    let user = true;
+    let badmin_user = true; 
+    console.log(user );
   axios
   .post("http://localhost:4000/misc/blogin", details)       
   .then((response) => {
@@ -125,29 +125,29 @@ const Login=()=> {
     if (response.data.status === "success") {
       console.log(response.data);
       localStorage.clear();
-      localStorage.setItem("Email", response.data.buyers.email);
-      localStorage.setItem("IsBuyer", 1);
-      //gotobuyer
-      navigate("/buyer");
+      localStorage.setItem("Email", response.data.users.email);
+      localStorage.setItem("IsUser", 1);
+      //gotouser
+      navigate("/user");
     /* }*/
     }
-    if(response.data.status === "Buyer not found")
+    if(response.data.status === "User not found")
     {
       axios
     .post("http://localhost:4000/misc/vlogin", details)
     .then((response2) => {
-      if(response2.data.status === "Vendor not found") {
+      if(response2.data.status === "Badmin not found") {
         alert("Wrong Credentials");
         }
       else{
       console.log(response2.data);
       localStorage.clear();
       localStorage.setItem("Email", response2.data.user.email);
-      localStorage.setItem("IsBuyer", 0);
+      localStorage.setItem("IsUser", 0);
 
-      //gotovendor
-      navigate("/vendor");
-      vendor_buyer = false;
+      //gotobadmin
+      navigate("/badmin");
+      badmin_user = false;
       }
       });
     }
@@ -172,11 +172,11 @@ const Login=()=> {
                 <Button type='submit' variant="outlined" color="primary" onClick={onSubmit} style={btnstyle}>Sign In</Button>
                 {/* </ThemeProvider> */}
 
-                <Typography variant='caption' style={sign_up_s} align='center' fullwidth="true"> <br /> <b>New to NGO Connect?  &ensp; </b>
+                <Typography variant='caption' style={sign_up_s} align='center' fullwidth="true"> <br /> <b>New to Academia?  &ensp; </b>
                     <Link href="/whoareyou" onClick={HandleClick} > Sign up</Link>
                 </Typography>
                 <br />
-                <img src={service} style={img_s} alt="service" width='60%' height='40%' />
+                <img src={logo} style={img_s} alt="logo" width='60%' height='40%' />
             </Paper>
         </Grid>        
     )

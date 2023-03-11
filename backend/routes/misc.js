@@ -2,24 +2,24 @@ var express = require("express");
 var router = express.Router();
 
 // Load User model
-const Buyer  = require("../models/buyer_m");
-const Vendor = require("../models/vendor_m");
+const User  = require("../models/user_m");
+const Badmin = require("../models/badmin_m");
 
 // Login
 router.post("/vlogin", (req, res) => {
 	const email = req.body.email;
     const password = req.body.password;
 	// Find user by email
-	Vendor.findOne({ email, password }).then(user => {
+	Badmin.findOne({ email, password }).then(user => {
 		// Check if user email exists
 		if (!user) {
 			return res.json({
-				status: "Vendor not found",
+				status: "Badmin not found",
 			});
         }
         else{
             //res.data.user = user;
-            res.send({message: "Vendor Found", user: user});
+            res.send({message: "Badmin Found", user: user});
             return user;
         }
 	});
@@ -30,21 +30,20 @@ router.post("/blogin", (req, res) => {
 	const email = req.body.email;
     const password = req.body.password;
 
-    const errorBuyer = new Buyer({
+    const errorUser = new User({
         email:"not found",
     })
 	// Find user by email
-	Buyer.findOne({ email, password }).then(buyers => {
-		// Check if buyers email exists
-		if (!buyers) {
+	User.findOne({ email, password }).then(users => {
+		// Check if users email exists
+		if (!users) {
             return res.json({
-				status: "Buyer not found",
+				status: "User not found",
 			});
         }
-        else{           
-            
-            res.send({message:"Buyer Found",buyers:buyers,status:"success"});
-            return buyers;
+        else{        
+            res.send({message:"User Found",users:users,status:"success"});
+            return users;
         }
 	});
 });
@@ -56,19 +55,19 @@ router.post("/blogin", (req, res) => {
 // 	// Find user by email
 //     var flag = 0;
     
-//     Buyer.findOne({ email }).then(buyers => {
-//         if( !buyers) {
+//     User.findOne({ email }).then(users => {
+//         if( !users) {
 //         }
 //         else{
-//             if( req.body.password === buyers.password ){
+//             if( req.body.password === users.password ){
 //                 flag = 1;
-//                 res.status(200).send([1, buyers.email]);
+//                 res.status(200).send([1, users.email]);
 //                 return;
 //             }
 //             else
 //             {
 //                 flag = 1;
-//                 res.status(400).send("Incorrect Vendor password");
+//                 res.status(400).send("Incorrect Badmin password");
 //                 return;
 //             }
 //         }
@@ -81,18 +80,18 @@ router.post("/blogin", (req, res) => {
 
 //     if( flag === 0 )
 //     {
-//         Vendor.findOne({ email }).then(vendors => {
-//             if( !vendors) {
+//         Badmin.findOne({ email }).then(badmins => {
+//             if( !badmins) {
 //                 res.status(401).send("Email does not exist");
 //             }
 //             else{
-//                 if( req.body.password === vendors.password ){
-//                     res.status(200).send([0, vendors.email]);
+//                 if( req.body.password === badmins.password ){
+//                     res.status(200).send([0, badmins.email]);
 //                     return;
 //                 }
 //                 else
 //                 {
-//                     res.status(400).send("Incorrect Vendor password");
+//                     res.status(400).send("Incorrect Badmin password");
 //                     return;
 //                 }
 //             }

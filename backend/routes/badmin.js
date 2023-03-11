@@ -1,24 +1,24 @@
 var express = require("express");
 var router = express.Router();
 
-// Load Vendor model
-const Vendor = require("../models/vendor_m");
-const Buyer = require("../models/buyer_m");
+// Load Badmin model
+const Badmin = require("../models/badmin_m");
+const User = require("../models/user_m");
 
 // GET request 
-// Getting the buyer by his email
+// Getting the user by his email
 router.get("/vprofile/:email", function(req, res) {
     const { email } = req.params;
 
-    Vendor.findOne({ email }).then(vendors => {
-		// Check if vendors email exists
-		if (!vendors) {
+    Badmin.findOne({ email }).then(badmins => {
+		// Check if badmins email exists
+		if (!badmins) {
 			res.status(405).json({
 				message: req.body,
 			});
         }
         else{
-            res.json(vendors);
+            res.json(badmins);
         }
 	})
     .catch(err => {
@@ -27,23 +27,21 @@ router.get("/vprofile/:email", function(req, res) {
     });
 });
 
-// edit vendor details 
+// edit badmin details 
 router.put("/editvpr", function(req, res) {
     const email = req.body.email;
     const filter = { email: email };
     const update = {
-        ManagerName: req.body.ManagerName,
-        OrgName: req.body.OrgName,
+        Name: req.body.Name,
         email: req.body.email,
         ContactNo: req.body.ContactNo,
-        wallet: req.body.wallet,
-        password: req.body.password,
-        OpeningTime: req.body.OpeningTime,
-        ClosingTime: req.body.ClosingTime,
+        password: req.body.password, 
+        CompanyID: req.body.CompanyID,
+        CompanyPass: req.body.CompanyPass,
     };
 
-    Vendor.findOneAndUpdate(filter, update, { new: true }).then( vendors => {
-        res.json(vendors);
+    Badmin.findOneAndUpdate(filter, update, { new: true }).then( badmins => {
+        res.json(badmins);
     })
     .catch(err => {
         console.log(err);
@@ -52,33 +50,32 @@ router.put("/editvpr", function(req, res) {
 });
 
 // POST request 
-// Add a vendor to db
+// Add a badmin to db
 router.post("/vregister", (req, res) => {
-    const newVendor = new Vendor({
-        ManagerName: req.body.ManagerName,
-        OrgName: req.body.OrgName,
+    const newBadmin = new Badmin({
+        Name: req.body.Name,
         email: req.body.email,
         ContactNo: req.body.ContactNo,
         password: req.body.password,
-        OpeningTime: req.body.OpeningTime,
-        ClosingTime: req.body.ClosingTime
+        CompanyID: req.body.CompanyID,
+        CompanyPass: req.body.CompanyPass,
     });
     
-    if( newVendor.ManagerName === "" || newVendor.OrgName === "" || newVendor.email === "" || newVendor.ContactNo === "" || newVendor.OpeningTime === "" || newVendor.ClosingTime === "" )
+    if( newBadmin.Name === "" || newBadmin.email === "" || newBadmin.ContactNo === "" || newBadmin.CompanyID === "" || newBadmin.CompanyPass === "" )
     {
         res.status(401).send("Please fill all the fields");
     }
 
-    Buyer.findOne({ email: newVendor.email }).then(buyers => {
-        if (buyers) {
+    User.findOne({ email: newBadmin.email }).then(users => {
+        if (users) {
             res.status(405).send("Email already exists");
         }
     });
 
 
-    newVendor.save()
-        .then(vendors => {
-            res.status(200).json(vendors);
+    newBadmin.save()
+        .then(badmins => {
+            res.status(200).json(badmins);
         })
         .catch(err => {
             console.log(err);
@@ -90,8 +87,8 @@ router.post("/vregister", (req, res) => {
 router.delete("/delete/:email", function(req, res) {
     const { email } = req.params;
 
-    Vendor.deleteOne({ email: email }).then(vendors => {
-        res.json(vendors);
+    Badmin.deleteOne({ email: email }).then(badmins => {
+        res.json(badmins);
     })
     .catch(err => {
         console.log(err);

@@ -12,10 +12,10 @@ const OrderSchema = new Schema({
 		// ref: 'Buyer',
 		required: 'Buyer ID is required'
 	},
-	VendorEmail: {
+	BadminEmail: {
 		type: String,
-		// ref: 'Vendor',
-		required: 'Vendor ID is required'
+		// ref: 'Badmin',
+		required: 'Badmin ID is required'
 	},
 	PlacedTime: {
 		type: Number,

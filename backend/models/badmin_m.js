@@ -1,15 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const VendorSchema = new Schema({
-	ManagerName: {
+const BadminSchema = new Schema({
+	Name: {
 		type: String,
 		required: true
-	},
-	OrgName: {
-		type: String,
-		required: true,
-		unique: 'This Organization has already been registered'
 	},
 	email: {
 		type: String,
@@ -31,18 +26,14 @@ const VendorSchema = new Schema({
 		type: String,
 		required: 'Password cannot be null'
 	},
-	OpeningTime : {
+	CompanyID: {
 		type: Number,
-		required: 'opening time is required',
-		$gte: [0, 'invalid opening time'],
-		$lte: [1440, 'invalid opening time']
+		required: 'CompanyID cannot be null'
 	},
-	ClosingTime : {
-		type: Number,
-		required: 'closing time is required',
-		$gte: [0, 'invalid closing time'],
-		$lte: [1440, 'invalid closing time']
-	}
+	CompanyPass: {
+		type: String,
+		required: 'Company Password cannot be null'
+	},
 });
 
-module.exports = Vendor = mongoose.model("Vendor", VendorSchema);
+module.exports = Badmin = mongoose.model("Badmin", BadminSchema);

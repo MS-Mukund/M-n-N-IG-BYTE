@@ -44,8 +44,8 @@ const Food_Prof = (props) => {
   const [id, setID] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [Bid, setBid] = useState("");
-  const [VendorEmail, setVendorEmail] = useState("");
-  const [VendorName, setVendorName] = useState("");
+  const [BadminEmail, setBadminEmail] = useState("");
+  const [BadminName, setBadminName] = useState("");
   const [balance, setBalance] = useState(0);
 
   const [selectedValue, setSelectedValue] = useState('');
@@ -68,8 +68,8 @@ const Food_Prof = (props) => {
       .then((response) => {
             
             console.log(response.data[0]);
-            localStorage.setItem("Vmail", response.data[0].VendorEmail);
-            setVendorEmail(response.data[0].VendorEmail);
+            localStorage.setItem("Vmail", response.data[0].BadminEmail);
+            setBadminEmail(response.data[0].BadminEmail);
             setID(response.data[0]._id);
             setName(response.data[0].name);
             setPrice(response.data[0].Price);
@@ -94,12 +94,12 @@ const Food_Prof = (props) => {
         console.log(error);
       });
 
-      // get vendor info
+      // get badmin info
       axios
-      .get("http://localhost:4000/vendor/vprofile/" + localStorage.getItem("Vmail") )
+      .get("http://localhost:4000/badmin/vprofile/" + localStorage.getItem("Vmail") )
       .then((response) => {
           console.log(response.data);
-          setVendorName(response.data.VendorName);
+          setBadminName(response.data.BadminName);
       })
       .catch((error) => {
         console.log(error);
@@ -115,9 +115,9 @@ const Food_Prof = (props) => {
     setQuantity(0);
 
     setSelectedValue('');
-    setVendorName("");
+    setBadminName("");
     setBid('');
-    setVendorEmail("");
+    setBadminEmail("");
     setBalance(0);
     setID("");
   };
@@ -152,8 +152,8 @@ const Food_Prof = (props) => {
         Status: 'Placed',
         Fid: id,
         Bid: Bid,
-        VendorEmail: VendorEmail,
-        VendorName: VendorName,
+        BadminEmail: BadminEmail,
+        BadminName: BadminName,
         Quantity: quantity,
         PlacedTime: time2,        
     };

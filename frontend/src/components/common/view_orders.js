@@ -63,7 +63,7 @@ const My_orders = (props) => {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    navigate("/vendor");
+    navigate("/badmin");
   }
 
   return (
@@ -96,7 +96,7 @@ const My_orders = (props) => {
                             const Order = {
                               Fid: food.Fid,
                               Bid: food.Bid,
-                              VendorEmail: food.VendorEmail,
+                              BadminEmail: food.BadminEmail,
                               PlacedTime: food.PlacedTime,
                               Fname: food.Fname,
                               Cost: food.Cost,

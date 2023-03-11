@@ -1,20 +1,20 @@
 var express = require("express");
 var router = express.Router();
 
-// Load Buyer model
+// Load User model
 const Food = require("../models/fooditems_m");
 
 // GET request 
-// Getting vendors items by his email
+// Getting badmins items by his email
 router.get("/vItems/:email", function(req, res) {
     const { email } = req.params;
 
-    Food.find({ VendorEmail: email }).then(items => {
+    Food.find({ BadminEmail: email }).then(items => {
         res.json(items);
 	})
     .catch(err => {
         console.log(err);
-        res.status(400).send(err);
+        res.status(414).send(err);
     });
 });
 
@@ -26,7 +26,7 @@ router.get("/vItems", function(req, res) {
     })
     .catch(err => {
         console.log(err);
-        res.status(400).send(err);
+        res.status(415).send(err);
     });
 });
 
@@ -40,7 +40,7 @@ router.get("/vFullinfo/:id", function(req, res) {
     })
     .catch(err => {
         console.log(err);
-        res.status(501).send(err);
+        res.status(416).send(err);
     });
 });
 
@@ -48,7 +48,7 @@ router.get("/vFullinfo/:id", function(req, res) {
 router.post("/newFood", function(req, res) {
     const newFood = new Food({
         name: req.body.name,
-        VendorEmail: req.body.VendorEmail,
+        BadminEmail: req.body.BadminEmail,
         Price: req.body.Price,
         rating: req.body.rating,
         FoodType: req.body.FoodType,
@@ -56,17 +56,17 @@ router.post("/newFood", function(req, res) {
         tags: req.body.tags,
     });
 
-    Food.findOne({name: req.body.name, VendorEmail: req.body.VendorEmail}).then(food => {
+    Food.findOne({name: req.body.name, BadminEmail: req.body.BadminEmail}).then(food => {
         if(food)
         {
-            res.status(502).json({
+            res.status(417).json({
                 error: "You are already selling this item"
             });
         }
         else
         {
             newFood.save().then(food => res.json(food))
-            .catch(err => res.status(501).send(err));
+            .catch(err => res.status(418).send(err));
         }
     });
 });
@@ -80,7 +80,7 @@ router.get("/show/:id", function(req, res) {
     })
     .catch(err => {
         console.log(err);
-        res.status(501).send(err);
+        res.status(419).send(err);
     });
 });
 
@@ -90,7 +90,7 @@ router.put("/edit/:id", function(req, res) {
     const filter = { _id: id };
     const update = {
         name: req.body.name,
-        VendorEmail: req.body.VendorEmail,
+        BadminEmail: req.body.BadminEmail,
         Price: req.body.Price,
         rating: req.body.rating,
         FoodType: req.body.FoodType,
@@ -114,7 +114,7 @@ router.delete("/delete/:id", function(req, res) {
     })
     .catch(err => {
         console.log(err);
-        res.status(502).send(err);
+        res.status(420).send(err);
     });
 });
 

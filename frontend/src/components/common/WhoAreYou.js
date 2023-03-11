@@ -14,7 +14,7 @@ const WhoAreYou = () => {
         }
         else
         {
-            navigate('/Vendor_r');
+            navigate('/Badmin_r');
         }
   }
     return (
@@ -22,8 +22,8 @@ const WhoAreYou = () => {
         <FormControl style={{width:"25%", margin: "15vh"}} >
         <InputLabel style={{width: "50%"}} id="demo-simple-select-label">Select type of user</InputLabel>
         <Select labelId="demo-simple-select-label" id="demo-simple-select" value={UserType} onChange={HandleChange}>
-          <MenuItem value={1}>I am a Philanthropist</MenuItem>
-          <MenuItem value={0}>I am an NGO</MenuItem>
+          <MenuItem value={1}>I am a User</MenuItem>
+          <MenuItem value={0}>I am an Admin</MenuItem>
         </Select>
         </FormControl>
     </Grid>

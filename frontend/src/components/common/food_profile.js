@@ -115,7 +115,7 @@ const Food_Prof = (props) => {
     
     const newFood = {
       name: name,
-      VendorEmail: localStorage.getItem('Email'),
+      BadminEmail: localStorage.getItem('Email'),
       Price: price,
       rating: 0,
       FoodType: foodtype,
@@ -130,7 +130,7 @@ const Food_Prof = (props) => {
         console.log(response.data);
 
         // goto login page
-        navigate("/vendor/Items");
+        navigate("/badmin/Items");
       })
       .catch ((err) => {
         alert(err);
@@ -148,7 +148,7 @@ const Food_Prof = (props) => {
       console.log(response.data);
 
       // goto login page
-      navigate("/vendor/Items");
+      navigate("/badmin/Items");
     })
     .catch ((err) => {
       alert(err);
