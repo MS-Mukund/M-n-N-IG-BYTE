@@ -30,7 +30,7 @@ router.post("/create", (req, res) => {
         });
 });
 
-// get orders by buyerid
+// get orders by userid
 router.get("/get/:Bid", (req, res) => {
     const { Bid } = req.params;
 

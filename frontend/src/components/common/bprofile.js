@@ -14,11 +14,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const Buy_prof = (props) => {
   const [name, setName] = useState("");
+  const [OrgName, setOrgName] = useState("");
   const [email, setEmail] = useState("");
   const [ContactNo, setContactNo] = useState(0);
   const [password, setPassword] = useState("");
   const [age, setAge] = useState(0);
-  const [BatchName, setBatchName] = useState("");
 
   const navigate = useNavigate();
 
@@ -42,21 +42,21 @@ const Buy_prof = (props) => {
     setAge(event.target.value);
   };
 
-  const onChangeBatchName = (event) => {
-    setBatchName(event.target.value);
+  const onChangeOrgName = (event) => {
+    setOrgName(event.target.value);
   };
 
   useEffect(() => {
     axios
-    .get("http://localhost:4000/buyer/bprofile/" + localStorage.getItem("Email") )
+    .get("http://localhost:4000/user/bprofile/" + localStorage.getItem("Email") )
     .then((response) => {
           console.log(response.data);
           setName(response.data.name);
+          setOrgName(response.data.OrgName);
           setEmail(response.data.email);
           setContactNo(Number(response.data.ContactNo) );
           setPassword(response.data.password);
           setAge( Number(response.data.Age) );
-          setBatchName(response.data.BatchName);
           
     })
     .catch((error) => {
@@ -68,22 +68,22 @@ const Buy_prof = (props) => {
 
   const resetInputs = () => {
     setName("");
+    setOrgName("");
     setEmail("");
     setContactNo(0);
     setPassword("");
     setAge(0);
-    setBatchName("");
   };
 
   const onDelete = (event) => {
     event.preventDefault();
 
     axios
-    .delete( ("http://localhost:4000/buyer/delete/" + email) )
+    .delete( ("http://localhost:4000/user/delete/" + email) )
     .then((response) => {
       console.log(response.data);
 
-      localStorage.removeItem("IsBuyer");
+      localStorage.removeItem("IsUser");
       localStorage.removeItem("Email");
       // goto login page
       navigate("/");
@@ -104,20 +104,19 @@ const Buy_prof = (props) => {
       ContactNo: ContactNo,
       password: password,
       Age: age,
-      BatchName: BatchName, 
-      Wallet: 0
+      OrgName: OrgName, 
     };
 
     console.log(newUser);
   
     axios
-      .put("http://localhost:4000/buyer/editbpr", newUser)
+      .put("http://localhost:4000/user/editbpr", newUser)
       .then((response) => {
         console.log(response.data);
 
         // goto login page
         alert("Profile Updated Successfully");
-        navigate("/buyer");
+        navigate("/user");
       })
       .catch ((err) => {
         alert(err);
@@ -140,21 +139,12 @@ const Buy_prof = (props) => {
           <Typography variant="caption" style={{font_size:32}}>Welcome!</Typography>
         </Grid>
         <form style={{'margin': '10px', padding: '10px'}} onSubmit={onSubmit}>
-          <TextField style={textStyle} value={name} onChange={onChangeUsername} disabled fullWidth label='Name' placeholder="your good Name please" />
-          <TextField style={textStyle} value={email} onChange={onChangeEmail} disabled  fullWidth label='Email' placeholder="Enter your Email" />
+          <TextField style={textStyle} value={name} onChange={onChangeUsername} disabled fullWidth label='Name' placeholder="Name" />
+          <TextField style={textStyle} value={OrgName} onChange={onChangeOrgName}   fullWidth label='Organization' placeholder="Your organization" />
+          <TextField style={textStyle} value={email} onChange={onChangeEmail} disabled  fullWidth label='Email' placeholder="Your Email" />
           <TextField style={textStyle} value={ContactNo} onChange={onChangeContactNo} fullWidth label='Contact' placeholder="Enter your Contact" />
           <TextField style={textStyle} value={password} onChange={onChangePassword}  fullWidth label='Password' placeholder="Enter your Password" type="password" />
           <TextField style={textStyle} value={age} onChange={onChangeAge}       fullWidth label='Age' placeholder="how old are you" />
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Which batch</InputLabel>
-            <Select labelId="demo-simple-select-label" id="demo-simple-select" value={BatchName} onChange={onChangeBatchName} label="BatchName">
-              <MenuItem value={"UG1"}>UG1</MenuItem>
-              <MenuItem value={"UG2"}>UG2</MenuItem>
-              <MenuItem value={"UG3"}>UG3</MenuItem>
-              <MenuItem value={"UG4"}>UG4</MenuItem>
-              <MenuItem value={"UG5"}>UG5</MenuItem>
-            </Select>
-          </FormControl>
 
           <Button style={{margin: '15px'}} type="submit" variant="contained" color="success">Update</Button>
         </form>

@@ -38,7 +38,7 @@ router.put("/editbpr", function(req, res) {
 
         password: req.body.password,
         Age: req.body.Age,
-        BatchName: req.body.BatchName,
+        OrgName: req.body.OrgName,
         Wallet: req.body.Wallet,
     };
 
@@ -73,8 +73,8 @@ router.post("/bregister", (req, res) => {
         ContactNo: req.body.ContactNo,
         password: req.body.password,
         Age: req.body.Age,
-        BatchName: req.body.BatchName,
-        Favorites: [], 
+        OrgName: req.body.OrgName,
+        Upcoming: [], 
         Wallet: 0
     });
 
@@ -115,9 +115,27 @@ router.post("/fav/create", function(req, res) {
     const { Fid, Bid } = req.body;
     const filter = { _id: Bid };
     
-    // push the food item id to favorites array
+    // push the food item id to upcoming array
     const update = {
-        $push: { Favorites: Fid }
+        $push: { Upcoming: Fid }
+    };
+
+    User.findOneAndUpdate(filter, update, { new: true }).then( users => {
+        res.json(users);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(403).send(err);
+    })
+});
+
+router.post("/fav/past", function(req, res) {
+    const { Pid, Bid } = req.body;
+    const filter = { _id: Bid };
+    
+    // push the food item id to upcoming array
+    const update = {
+        $push: { Upcoming: Pid }
     };
 
     User.findOneAndUpdate(filter, update, { new: true }).then( users => {

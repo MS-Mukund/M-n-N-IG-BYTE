@@ -10,7 +10,7 @@ const WhoAreYou = () => {
 
         if( event.target.value === 1 )
         {
-            navigate('/Buyer_r');
+            navigate('/User_r');
         }
         else
         {

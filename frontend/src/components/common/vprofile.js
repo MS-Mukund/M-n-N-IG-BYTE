@@ -110,7 +110,7 @@ const Badmin_Prof = (props) => {
     .then((response) => {
       console.log(response.data);
 
-      localStorage.removeItem("IsBuyer");
+      localStorage.removeItem("IsUser");
       localStorage.removeItem("Email");
       // goto login page
       navigate("/");

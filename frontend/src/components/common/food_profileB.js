@@ -82,9 +82,9 @@ const Food_Prof = (props) => {
         console.log(error);
       });
 
-      // get buyer info
+      // get user info
       axios
-      .get("http://localhost:4000/buyer/bprofile/" + localStorage.getItem("Email") ) 
+      .get("http://localhost:4000/user/bprofile/" + localStorage.getItem("Email") ) 
       .then((response) => {
           console.log(response.data);
           setBid(response.data._id);
@@ -142,7 +142,7 @@ const Food_Prof = (props) => {
       console.log( "Price: " + Number(price) );
       console.log( "Quantity: " + Number(quantity) );
       alert("Insufficient Balance");
-      navigate("/buyer");
+      navigate("/user");
     }
 
     const newOrder = {
@@ -160,9 +160,9 @@ const Food_Prof = (props) => {
 
     console.log(newOrder);
 
-    // update buyer wallet
+    // update user wallet
     axios
-    .put("http://localhost:4000/buyer/updatewallet/" + Bid, { Wallet: balance - price*quantity } )
+    .put("http://localhost:4000/user/updatewallet/" + Bid, { Wallet: balance - price*quantity } )
     .then((response) => {
         console.log(response.data);
     });
@@ -173,12 +173,12 @@ const Food_Prof = (props) => {
         console.log(response.data);
         alert("Order Placed");
         // goto login page
-        navigate("/buyer");
+        navigate("/user");
       })
       .catch ((err) => {
-        // update buyer wallet
+        // update user wallet
         // axios
-        // .put("http://localhost:4000/buyer/updatewallet/" + Bid, { Wallet: balance + price*quantity } )
+        // .put("http://localhost:4000/user/updatewallet/" + Bid, { Wallet: balance + price*quantity } )
         // .then((response) => {
         //     console.log(response.data);
         // });
@@ -192,7 +192,7 @@ const Food_Prof = (props) => {
     event.preventDefault();
 
     axios
-      .post( ("http://localhost:4000/buyer/fav/create" ) , {Fid: id, Bid: Bid} )
+      .post( ("http://localhost:4000/user/fav/create" ) , {Fid: id, Bid: Bid} )
       .then((response) => {
         console.log(response.data);
         alert("Added to Favourites");

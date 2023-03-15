@@ -21,16 +21,16 @@ const NavbarB = () => {
             Academia
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
-          <Button color="inherit" onClick={() => navigate("/buyer")}>
+          <Button color="inherit" onClick={() => navigate("/user")}>
             Home
           </Button>
-          <Button color="inherit" onClick={() => navigate("/buyer/my_orders")}>
+          <Button color="inherit" onClick={() => navigate("/user/my_orders")}>
             My Orders
           </Button>
-          <Button color="inherit" onClick={() => navigate("/buyer/make_order")}>
+          <Button color="inherit" onClick={() => navigate("/user/make_order")}>
             Let's Eat!
           </Button>
-          <Button color="inherit" onClick={() => navigate("/buyer/profile")}>
+          <Button color="inherit" onClick={() => navigate("/user/profile")}>
             My Profile
           </Button>
         </Toolbar>

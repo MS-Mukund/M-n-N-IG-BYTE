@@ -8,7 +8,7 @@ const DB_NAME = "academia";
 
 // routes
 var testAPIRouter = require("./routes/testAPI");
-var EventRouter = require("./routes/Events");
+var EventRouter = require("./routes/event");
 var UserRouter = require("./routes/user");
 var BadminRouter = require("./routes/badmin");
 var MiscRouter = require("./routes/misc");

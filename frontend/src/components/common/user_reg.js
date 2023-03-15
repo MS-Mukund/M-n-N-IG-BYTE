@@ -18,6 +18,7 @@ const Buy_reg = (props) => {
   const [password, setPassword] = useState("");
   const [age, setAge] = useState(0);
   const [CPass, setCPass] = useState("");
+  const [OrgName, setOrgName] = useState("");
 
   const navigate = useNavigate();
 
@@ -37,20 +38,20 @@ const Buy_reg = (props) => {
     setPassword(event.target.value);
   };
   
-  // const onChangeAge = (event) => {
-  //   setAge(event.target.value);
-  // };
+  const onChangeAge = (event) => {
+    setAge(event.target.value);
+  };
 
-  // const onChangeBatchName = (event) => {
-  //   setBatchName(event.target.value);
-  // };
+  const onChangeOrgName = (event) => {
+    setOrgName(event.target.value);
+  };
   const resetInputs = () => {
     setName("");
     setEmail("");
     setContactNo(0);
     setPassword("");
-    // setAge(0);
-    // setBatchName("");
+    setAge(0);
+    setOrgName("");
   };
 
   const onChangeCPass = (event) => {
@@ -63,10 +64,10 @@ const Buy_reg = (props) => {
     const newUser = {
       name: name,
       email: email,
+      OrgName: OrgName,
       ContactNo: ContactNo,
       password: password,
-      // age: age,
-      // BatchName: BatchName
+      age: age
     };
 
     console.log(newUser);
@@ -77,7 +78,7 @@ const Buy_reg = (props) => {
     }
 
     axios
-      .post("http://localhost:4000/buyer/bregister", newUser)
+      .post("http://localhost:4000/user/bregister", newUser)
       .then((response) => {
         console.log(response.data);
 
@@ -106,21 +107,12 @@ const Buy_reg = (props) => {
         </Grid>
         <form style={{'margin': '10px', padding: '10px'}} onSubmit={onSubmit}>
           <TextField style={textStyle} onChange={onChangeUsername}  fullWidth label='Name' placeholder="Enter your username" />
+          <TextField style={textStyle} onChange={onChangeOrgName}  fullWidth label='Organization Name' placeholder="Enter Organization" />
           <TextField style={textStyle} onChange={onChangeEmail}     fullWidth label='Email' placeholder="Enter your Email" />
           <TextField style={textStyle} onChange={onChangeContactNo} fullWidth label='Contact' placeholder="Enter your Contact" />
           <TextField style={textStyle} onChange={onChangePassword}  fullWidth label='Password' placeholder="Enter your Password" type="password" />
+          <TextField style={textStyle} onChange={onChangeAge}  fullWidth label='Age' placeholder="Enter your Age" />
           <TextField style={textStyle} onChange={onChangeCPass}     fullWidth label='Confirm Password' placeholder="Confirm the top-secret Password" type="password" />
-          {/* <TextField style={textStyle} onChange={onChangeAge}       fullWidth label='Age' placeholder="how old are you" /> */}
-          {/* <FormControl fullWidth> */}
-            {/* <InputLabel id="demo-simple-select-label">Which batch</InputLabel> */}
-            {/* <Select labelId="demo-simple-select-label" id="demo-simple-select" value={BatchName} onChange={onChangeBatchName} label="BatchName"> */}
-              {/* <MenuItem value={"UG1"}>UG1</MenuItem> */}
-              {/* <MenuItem value={"UG2"}>UG2</MenuItem> */}
-              {/* <MenuItem value={"UG3"}>UG3</MenuItem> */}
-              {/* <MenuItem value={"UG4"}>UG4</MenuItem> */}
-              {/* <MenuItem value={"UG5"}>UG5</MenuItem> */}
-            {/* </Select> */}
-          {/* </FormControl> */}
 
           <Button style={{margin: '15px'}} type="submit" variant="contained" color="success">Sign me up!</Button>
         </form>

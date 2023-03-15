@@ -9,8 +9,8 @@ const OrderSchema = new Schema({
 	}, 
 	Bid: {
 		type: String,
-		// ref: 'Buyer',
-		required: 'Buyer ID is required'
+		// ref: 'User',
+		required: 'User ID is required'
 	},
 	BadminEmail: {
 		type: String,

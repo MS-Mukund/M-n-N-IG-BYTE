@@ -40,7 +40,7 @@ const My_orders = (props) => {
   useEffect(() => {
 
     axios
-        .get("http://localhost:4000/buyer/bprofile/" + email )
+        .get("http://localhost:4000/user/bprofile/" + email )
         .then((response) => {
             localStorage.setItem("Bid", response.data._id);
         })
@@ -71,7 +71,7 @@ const My_orders = (props) => {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    navigate("/buyer");
+    navigate("/user");
   }
 
   return (

@@ -66,11 +66,11 @@ router.post("/vregister", (req, res) => {
         res.status(401).send("Please fill all the fields");
     }
 
-    User.findOne({ email: newBadmin.email }).then(users => {
-        if (users) {
-            res.status(405).send("Email already exists");
-        }
-    });
+    // User.findOne({ email: newBadmin.email }).then(users => {
+        // if (users) {
+            // res.status(405).send("Email already exists");
+        // }
+    // });
 
 
     newBadmin.save()

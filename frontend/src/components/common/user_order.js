@@ -73,9 +73,9 @@ const MakeOrder = (props) => {
                 {items.map((food, ind2) => (
                   <TableRow key={ind2}>
                     <TableCell>{ind2}</TableCell>
-                    <TableCell><Link to={"/buyer/show"} onClick={() => {
+                    <TableCell><Link to={"/user/show"} onClick={() => {
                       localStorage.setItem("Item_ID", food._id);
-                      navigate("/buyer/show");
+                      navigate("/user/show");
                     }}>{food.name}</Link></TableCell>
                     <TableCell>{ String(food.FoodType) }</TableCell>
                     <TableCell>{food.Price}</TableCell>

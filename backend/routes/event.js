@@ -2,9 +2,9 @@ var express = require("express");
 var router = express.Router();
 
 // Load User model
-const User = require("../models/Users_m");
+const Event = require("../models/event_m");
 const Badmin = require("../models/badmin_m");
-const Buyer = require("../models/buyer_m");
+const User = require("../models/user_m");
 
 // GET request 
 // Getting all the users

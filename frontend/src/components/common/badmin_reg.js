@@ -8,13 +8,15 @@ import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import { MenuItem, Typography, FormControl, Select, InputLabel } from "@mui/material";
 // import DateTimePicker from '@mui/lab/DateTimePicker';
 
-const Vend_reg = (props) => {
+const Badmin_reg = (props) => {
   const navigate = useNavigate();
   const [AdminName, setAdminName] = useState("");
   const [email, setEmail] = useState("");
   const [ContactNo, setContactNo] = useState('');
   const [password, setPassword] = useState("");
   const [CPass, setCPass] = useState("");
+  const [CompanyID, setCompanyID] = useState("");
+  const [CompanyPass, setCompanyPass] = useState("");
 
   const onChangeName = (event) => {
     setAdminName(event.target.value);
@@ -36,14 +38,21 @@ const Vend_reg = (props) => {
     setCPass(event.target.value);
   };
 
-  let mins_arr = Array.from(Array(60).keys());
-  let hrs_arr = Array.from(Array(24).keys());
+  const onChangeCompanyID = (event) => {
+    setCompanyID(event.target.value);
+  };
+
+  const onChangeCompanyPass = (event) => {
+    setCompanyPass(event.target.value);
+  };
 
   const resetInputs = () => {
     setAdminName("");
     setEmail("");
     setContactNo(0);
     setPassword("");
+    setCompanyID("");
+    setCompanyPass("");
   };
 
   const onSubmit = (event) => {
@@ -61,12 +70,17 @@ const Vend_reg = (props) => {
     console.log(email);
     console.log(ContactNo);
     console.log(password);
+    console.log(CompanyID);
+    console.log(CompanyPass);
+    console.log("here");
 
     const newBadmin = {
       AdminName: AdminName,
       email: email,
       ContactNo: ContactNo,
       password: password,
+      CompanyID: CompanyID,
+      CompanyPass: CompanyPass
     };
 
     axios
@@ -101,7 +115,9 @@ const Vend_reg = (props) => {
           <TextField style={textStyle} fullWidth label='Contact' placeholder="Your mobile number" onChange={onChangeContactNo} required/>
           <TextField style={textStyle} fullWidth label='Password' placeholder="Enter your Password" type="password" onChange={onChangePassword} required/>
           <TextField style={textStyle} fullWidth label='Confirm Password' placeholder="Confirm Pasword" type="password" onChange={ConfirmPassword} required />
-        
+          <TextField style={textStyle} fullWidth label='Company ID' placeholder="Enter your company ID" onChange={onChangeCompanyID} required />
+          <TextField style={textStyle} fullWidth label='Company Passcode' placeholder="Enter your company passcode" onChange={onChangeCompanyPass} required />
+
           <br />
           <Button style={{margin: '15px'}} type="submit" variant="contained" color="success">Submit</Button>
         </form>
@@ -110,4 +126,4 @@ const Vend_reg = (props) => {
   );
 };
 
-export default Vend_reg;
+export default Badmin_reg;

@@ -1,10 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const BuyerSchema = new Schema({
+const UserSchema = new Schema({
 	name: {
 		type: String,
 		required: 'Your Name'
+	},
+	OrgName: {
+		type: String,
+		required: 'Your Organization Name'
 	},
 	email: {
 		type: String,
@@ -32,16 +36,8 @@ const BuyerSchema = new Schema({
 		$lt : [110, 'invalid age'],
 		$gt : [3, 'invalid age']
 	}, 
-	BatchName: {
-		type: String,
-		match: [/UG[12345]/, 'Invalid Batch Name']
-	}, 
-	Favorites: [{ type: Schema.Types.ObjectId, ref: 'Food' }], 
-	Wallet: {
-		type: Number,
-		required: false,
-		$gte: ['0', 'invalid balance' ]
-	}
+	Upcoming: [{ type: Schema.Types.ObjectId, ref: 'Event' }], 
+	Completed: [{ type: Schema.Types.ObjectId, ref: 'Event' }],
 });
 
-module.exports = Buyer = mongoose.model("Buyer", BuyerSchema);
+module.exports = User = mongoose.model("User", UserSchema);
